@@ -25,7 +25,9 @@ export const siteSettings = defineType({
       type: "string",
       options: {
         list: [
-          { title: "Sage — warm green", value: "sage" },
+          { title: "Nocturne (dark)", value: "nocturne" },
+            { title: "Dawn (light)", value: "dawn" },
+            { title: "Sage — warm green", value: "sage" },
           { title: "Navy — cool, clinical", value: "navy" },
           { title: "Terracotta — warm, bold", value: "terracotta" },
           { title: "Lavender — soft, serene", value: "lavender" },
@@ -42,7 +44,8 @@ export const siteSettings = defineType({
       type: "string",
       options: {
         list: [
-          { title: "Cormorant + Inter — soft serif", value: "cormorant" },
+          { title: "Cormorant + Karla", value: "karla" },
+            { title: "Cormorant + Inter — soft serif", value: "cormorant" },
           {
             title: "Libre Franklin + Inter — clean sans",
             value: "libre-franklin",
@@ -99,6 +102,35 @@ export const siteSettings = defineType({
       name: "phone",
       title: "Phone",
       type: "string",
+    }),
+    defineField({
+      name: "teacherName",
+      title: "Your name",
+      description: "Used where the site talks about you rather than the studio.",
+      type: "string",
+    }),
+    defineField({
+      name: "credential",
+      title: "Your qualification",
+      description: 'e.g. "RYT-500".',
+      type: "string",
+    }),
+    defineField({
+      name: "location",
+      title: "Neighborhood or city",
+      description: 'Shown in the footer, e.g. "East Austin, TX".',
+      type: "string",
+    }),
+    defineField({
+      name: "phoneHref",
+      title: "Phone link",
+      description: 'The dialable version, e.g. "tel:+15125550142". Leave blank and we build it from the number above.',
+      type: "string",
+    }),
+    defineField({
+      name: "instagram",
+      title: "Instagram (optional)",
+      type: "url",
     }),
     defineField({
       name: "addressLine",

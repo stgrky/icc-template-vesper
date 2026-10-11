@@ -15,106 +15,6 @@ export const siteSettingsQuery = groq`*[_type == "siteSettings"][0]{
   stickyCta
 }`;
 
-export const homePageQuery = groq`*[_type == "homePage"][0]{
-  heroEyebrow,
-  heroHeading,
-  heroSubhead,
-  heroImage,
-  primaryCta,
-  secondaryCta,
-  whatToExpectHeading,
-  whatToExpectIntro,
-  whatToExpectSteps,
-  aboutTeaserHeading,
-  aboutTeaserBody,
-  aboutTeaserImage,
-  pricingHeading,
-  pricingIntro,
-  sessionFee,
-  insuranceNote,
-  slidingScaleNote,
-  showPracticeFacts,
-  practiceFacts,
-  showGoodFit,
-  goodFitHeading,
-  goodFitIntro,
-  goodFitForLabel,
-  goodFitFor,
-  goodFitReferLabel,
-  goodFitReferOut,
-  showFaq,
-  faqHeading,
-  faqIntro,
-  faqs
-}`;
-
-export const featuredTestimonialsQuery = groq`*[_type == "testimonial"] | order(coalesce(displayOrder, 9999) asc, _createdAt desc)[0...5]{
-  _id,
-  quote,
-  attribution,
-  context,
-  displayOrder
-}`;
-
-export const announcementQuery = groq`*[_type == "announcement"][0]{
-  _id,
-  _updatedAt,
-  enabled,
-  message,
-  linkLabel,
-  linkHref,
-  variant,
-  startDate,
-  endDate
-}`;
-
-export const aboutPageQuery = groq`*[_type == "aboutPage"][0]{
-  heading,
-  intro,
-  body,
-  portrait,
-  credentials,
-  credentialBadges,
-  showPrinciples,
-  principlesHeading,
-  principles,
-  showTimeline,
-  timelineHeading,
-  timeline
-}`;
-
-export const servicesPageQuery = groq`*[_type == "servicesPage"][0]{
-  heading,
-  intro,
-  services[]{
-    title,
-    description,
-    icon
-  },
-  showTreatmentArc,
-  treatmentArcHeading,
-  treatmentArcIntro,
-  treatmentArc,
-  showFees,
-  feesHeading,
-  fees,
-  feesNote
-}`;
-
-export const contactPageQuery = groq`*[_type == "contactPage"][0]{
-  heading,
-  intro,
-  email,
-  phone,
-  addressLine,
-  schedulingUrl,
-  hours,
-  showNextSteps,
-  nextStepsHeading,
-  nextSteps,
-  crisisNote
-}`;
-
 export const allPostsQuery = groq`*[_type == "post" && defined(slug.current)] | order(publishedAt desc){
   _id,
   title,
@@ -216,3 +116,38 @@ export const postBySlugQuery = groq`*[_type == "post" && slug.current == $slug][
   }
 }`;
 
+
+/* ── Vesper page queries ──
+ * Each returns the single published document for that page. `[0]` rather than
+ * a list: these are singletons in Studio, and a GROQ array would make every
+ * consumer index into it.
+ */
+export const homePageQuery = `*[_type == "homePage"][0]{
+  hero{ eyebrow, heading, body, primaryCta{ label, href }, secondaryCta{ label, href } },
+  intro{ heading, body },
+  classTypesHeading, classTypesIntro,
+  classTypes[]{ name, duration, intensity, summary, forWhom },
+  scheduleHeading, scheduleIntro, scheduleNote,
+  schedule[]{ day, time, className, duration, spaces },
+  firstTimeHeading, firstTimeIntro, firstTime[]{ q, a },
+  teacherHeading, teacherBody, teacherCta{ label, href },
+  testimonial{ quote, attribution },
+  pricingHeading, pricingIntro, pricing[]{ label, price, note }, pricingNote,
+  closing{ heading, body, cta{ label, href } }
+}`;
+
+export const classesPageQuery = `*[_type == "classesPage"][0]{
+  eyebrow, heading, intro, bookingNote
+}`;
+
+export const aboutPageQuery = `*[_type == "aboutPage"][0]{
+  eyebrow, heading, credential, portrait, body,
+  trainingHeading, training[]{ label, detail },
+  closing{ heading, body, cta{ label, href } }
+}`;
+
+export const contactPageQuery = `*[_type == "contactPage"][0]{
+  eyebrow, heading, intro,
+  studioHeading, studioBody,
+  accessibilityHeading, accessibilityBody
+}`;

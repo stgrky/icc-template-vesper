@@ -222,3 +222,83 @@ export interface RecentPost {
 }
 
 export type SlugRef = Slug;
+
+/* ── Vesper page shapes ── */
+export interface VesperCta {
+  label?: string;
+  href?: string;
+}
+
+export interface VesperClassType {
+  name?: string;
+  duration?: string;
+  intensity?: number;
+  summary?: string;
+  forWhom?: string;
+}
+
+export interface VesperSlot {
+  day?: string;
+  time?: string;
+  className?: string;
+  duration?: string;
+  spaces?: string;
+}
+
+export interface VesperHome {
+  hero?: {
+    eyebrow?: string;
+    heading?: string;
+    body?: string;
+    primaryCta?: VesperCta;
+    secondaryCta?: VesperCta;
+  };
+  intro?: { heading?: string; body?: string };
+  classTypesHeading?: string;
+  classTypesIntro?: string;
+  classTypes?: VesperClassType[];
+  scheduleHeading?: string;
+  scheduleIntro?: string;
+  scheduleNote?: string;
+  schedule?: VesperSlot[];
+  firstTimeHeading?: string;
+  firstTimeIntro?: string;
+  firstTime?: { q?: string; a?: string }[];
+  teacherHeading?: string;
+  teacherBody?: string;
+  teacherCta?: VesperCta;
+  testimonial?: { quote?: string; attribution?: string };
+  pricingHeading?: string;
+  pricingIntro?: string;
+  pricing?: { label?: string; price?: string; note?: string }[];
+  pricingNote?: string;
+  closing?: { heading?: string; body?: string; cta?: VesperCta };
+}
+
+export interface VesperClasses {
+  eyebrow?: string;
+  heading?: string;
+  intro?: string;
+  bookingNote?: string;
+}
+
+export interface VesperAbout {
+  eyebrow?: string;
+  heading?: string;
+  credential?: string;
+  portrait?: SanityImageWithAlt;
+  body?: string[];
+  trainingHeading?: string;
+  training?: { label?: string; detail?: string }[];
+  closing?: { heading?: string; body?: string; cta?: VesperCta };
+}
+
+export interface VesperContact {
+  eyebrow?: string;
+  heading?: string;
+  intro?: string;
+  studioHeading?: string;
+  studioBody?: string;
+  accessibilityHeading?: string;
+  accessibilityBody?: string;
+}

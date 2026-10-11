@@ -7,6 +7,8 @@ import {
   defaultHomePage,
   defaultSiteSettings,
 } from "@/lib/vesper-defaults";
+import { safeFetch } from "@/sanity/client";
+import { classesPageQuery, homePageQuery } from "@/sanity/queries";
 
 export const metadata: Metadata = {
   title: "Classes",
@@ -19,9 +21,18 @@ export const metadata: Metadata = {
  * Classes. The schedule component is shared with the home page rather than
  * duplicated, so a teacher editing her times changes them in one place.
  */
-export default function ClassesPage() {
-  const page = defaultClassesPage;
-  const home = defaultHomePage;
+export default async function ClassesPage() {
+  // Sanity when connected, the demo persona when not. A null guard as well as
+  // the fallback: safeFetch covers "no project", this covers "project exists
+  // but the document was never created".
+  const page =
+    (await safeFetch<typeof defaultClassesPage | null>(classesPageQuery, {}, defaultClassesPage)) ??
+    defaultClassesPage;
+  // Class types, schedule and first-timer questions live on the home
+  // document and are reused here, so a time changed once changes everywhere.
+  const home =
+    (await safeFetch<typeof defaultHomePage | null>(homePageQuery, {}, defaultHomePage)) ??
+    defaultHomePage;
 
   return (
     <>

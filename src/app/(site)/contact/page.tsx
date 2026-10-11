@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 
 import { Reveal } from "@/components/motion/Reveal";
 import { defaultContactPage, defaultSiteSettings } from "@/lib/vesper-defaults";
+import { safeFetch } from "@/sanity/client";
+import { contactPageQuery, siteSettingsQuery } from "@/sanity/queries";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -21,9 +23,16 @@ export const metadata: Metadata = {
  * no lift" is the single most useful thing this page can tell some readers,
  * and burying it wastes their time.
  */
-export default function ContactPage() {
-  const page = defaultContactPage;
-  const s = defaultSiteSettings;
+export default async function ContactPage() {
+  // Sanity when connected, the demo persona when not. A null guard as well as
+  // the fallback: safeFetch covers "no project", this covers "project exists
+  // but the document was never created".
+  const page =
+    (await safeFetch<typeof defaultContactPage | null>(contactPageQuery, {}, defaultContactPage)) ??
+    defaultContactPage;
+  const s =
+    (await safeFetch<typeof defaultSiteSettings | null>(siteSettingsQuery, {}, defaultSiteSettings)) ??
+    defaultSiteSettings;
 
   return (
     <>

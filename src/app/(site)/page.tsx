@@ -4,6 +4,8 @@ import { Reveal } from "@/components/motion/Reveal";
 import { VesperHero } from "@/components/site/VesperHero";
 import { WeeklySchedule } from "@/components/site/WeeklySchedule";
 import { defaultHomePage } from "@/lib/vesper-defaults";
+import { safeFetch } from "@/sanity/client";
+import { homePageQuery } from "@/sanity/queries";
 
 /**
  * Vesper's home page.
@@ -14,8 +16,13 @@ import { defaultHomePage } from "@/lib/vesper-defaults";
  * who I am, then cost. Price sits late on purpose — it is the easiest
  * objection and answering it first implies it is the main one.
  */
-export default function HomePage() {
-  const page = defaultHomePage;
+export default async function HomePage() {
+  // Sanity when connected, the demo persona when not. A null guard as well as
+  // the fallback: safeFetch covers "no project", this covers "project exists
+  // but the document was never created".
+  const page =
+    (await safeFetch<typeof defaultHomePage | null>(homePageQuery, {}, defaultHomePage)) ??
+    defaultHomePage;
 
   return (
     <>

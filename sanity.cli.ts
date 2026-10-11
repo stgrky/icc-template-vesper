@@ -7,6 +7,14 @@ export default defineCliConfig({
     projectId,
     dataset,
   },
-  studioHost: "icc-grove-demo",
-  deployment: { autoUpdates: true, appId: "gsuv947sdzrhlbnn3c6n7opa" },
+  // RUNBOOK gate 1b. This arrived from the Grove scaffold reading
+  // "icc-grove-demo" with Grove's appId beside it: a deploy from here would
+  // have published Vesper's Studio over Grove's live URL, pointed at a
+  // different project, while Grove's users carried on visiting it.
+  //
+  // `appId` is deliberately absent. On the first `sanity deploy` the CLI
+  // refuses and prints a NEW appId for this Studio app — paste that one here.
+  // Pasting the old one back is the mistake the gate exists to catch.
+  studioHost: "icc-vesper-demo",
+  deployment: { autoUpdates: true },
 });

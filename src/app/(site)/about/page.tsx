@@ -3,6 +3,8 @@ import Link from "next/link";
 
 import { Reveal } from "@/components/motion/Reveal";
 import { defaultAboutPage } from "@/lib/vesper-defaults";
+import { safeFetch } from "@/sanity/client";
+import { aboutPageQuery } from "@/sanity/queries";
 
 export const metadata: Metadata = {
   title: "About",
@@ -16,8 +18,13 @@ export const metadata: Metadata = {
  * the one page on a teacher's site that is genuinely just writing, and
  * breaking it into tiles would make it read as marketing.
  */
-export default function AboutPage() {
-  const page = defaultAboutPage;
+export default async function AboutPage() {
+  // Sanity when connected, the demo persona when not. A null guard as well as
+  // the fallback: safeFetch covers "no project", this covers "project exists
+  // but the document was never created".
+  const page =
+    (await safeFetch<typeof defaultAboutPage | null>(aboutPageQuery, {}, defaultAboutPage)) ??
+    defaultAboutPage;
 
   return (
     <>
