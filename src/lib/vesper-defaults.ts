@@ -158,3 +158,80 @@ export const defaultHomePage = {
 
 export type VesperHomePage = typeof defaultHomePage;
 export type VesperSiteSettings = typeof defaultSiteSettings;
+
+export const defaultClassesPage = {
+  eyebrow: "Classes",
+  heading: "Four nights a week, and Sunday at dusk",
+  intro:
+    "Every class is capped at twelve mats. Book ahead if you can, but if you turn up and there's room, there's room.",
+  bookingNote:
+    "Booking is by email for now. Send me the night you want and I'll hold a mat — no app, no account, no password to forget.",
+};
+
+export const defaultAboutPage = {
+  eyebrow: "About",
+  heading: "Nora Vance",
+  credential: "RYT-500 · Teaching since 2018",
+  portraitAlt: "Nora sitting cross-legged on a bolster in a dim studio",
+  body: [
+    "I came to yoga late and badly, in my thirties, after a decade of treating my body as something that carried my head to meetings. My first class was humiliating. I spent most of it looking sideways to check what everyone else was doing, and I did not go back for a year.",
+    "When I did go back, it was to a small evening restorative class in a room with the lights off, taught by someone who never once mentioned alignment. That hour did more for me than the previous decade of trying to be good at exercise. It is the class I now teach.",
+    "I trained at 200 hours in 2018 and finished my 500 in 2022, with additional training in trauma-informed teaching and in working with pregnancy and postpartum. What that means in practice is that I will offer you options rather than corrections, I will ask before I touch you, and I will never tell you that you should be further along than you are.",
+  ],
+  trainingHeading: "Training",
+  training: [
+    { label: "RYT-500", detail: "Yoga Alliance registered, completed 2022" },
+    { label: "Trauma-informed teaching", detail: "60-hour certification, 2023" },
+    { label: "Prenatal and postpartum", detail: "85-hour certification, 2021" },
+    { label: "Yin", detail: "50-hour immersion, 2020" },
+  ],
+  closing: {
+    heading: "Come and see whether it suits you",
+    body: "Your first class is free, and there is no expectation that you come back.",
+    cta: { label: "See the schedule", href: "/classes" },
+  },
+};
+
+export const defaultContactPage = {
+  eyebrow: "Contact",
+  heading: "Say hello",
+  intro:
+    "Questions about whether a class is right for you are welcome and never a bother. I answer everything myself, usually the same evening.",
+  studioHeading: "The studio",
+  studioBody:
+    "A small room above a bakery in East Austin. Street parking is easy after six. Come up the side stairs; the door is the one with the lantern.",
+  accessibilityHeading: "Access",
+  accessibilityBody:
+    "The studio is up one flight of stairs with no lift, which I know rules it out for some people. If stairs are a barrier and you would like to practice, email me — I teach a handful of home sessions and I would rather find a way than have you not ask.",
+};
+
+/**
+ * Demo journal posts. Replaced entirely on a provisioned site; these exist so
+ * the blog route is not an empty shell in the demo.
+ */
+export const demoPosts = [
+  {
+    slug: "what-restorative-actually-means",
+    title: "What “restorative” actually means",
+    excerpt:
+      "It is not gentle yoga, and it is not a nap with extra steps. Here is what the word is doing and why the props matter.",
+    publishedAt: "2026-09-18",
+    readingTime: "4 min",
+  },
+  {
+    slug: "you-do-not-need-to-be-flexible",
+    title: "You do not need to be flexible",
+    excerpt:
+      "The single most common reason people give for not coming, and why it has the logic exactly backwards.",
+    publishedAt: "2026-08-30",
+    readingTime: "3 min",
+  },
+  {
+    slug: "on-practicing-when-everything-is-loud",
+    title: "On practicing when everything is loud",
+    excerpt:
+      "What to do with a practice when your life, your head, or the news will not quiet down enough for it.",
+    publishedAt: "2026-08-02",
+    readingTime: "6 min",
+  },
+];
