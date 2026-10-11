@@ -1,3 +1,5 @@
+import type { SanityImageWithAlt } from "@/sanity/types";
+
 /**
  * Vesper's demo persona.
  *
@@ -12,6 +14,21 @@
  * rolodex is bright and daytime, and the one visual idea here is a room lit
  * by a single warm source. A 6am power-flow persona would fight it.
  */
+
+
+/**
+ * Demo photography, Unsplash. Licensed for commercial use with no attribution
+ * required, which is what makes it safe on a public demo.
+ *
+ * A real client never ships these. Their own photos go into Sanity at
+ * provisioning and the URLs below stop being read at all — `VesperImage`
+ * prefers the Sanity asset whenever one exists.
+ *
+ * Every one was looked at before being chosen: a photo search for a dark yoga
+ * studio returns plenty that is wrong for a therapist-adjacent brand.
+ */
+const demoPhoto = (id: string, w = 1800, h = 1200) =>
+  `https://images.unsplash.com/${id}?w=${w}&h=${h}&fit=crop&auto=format&q=70`;
 
 export const defaultSiteSettings = {
   practiceName: "Vesper Yoga",
@@ -35,7 +52,9 @@ export const defaultHomePage = {
     body: "Small evening classes in East Austin for people who spend all day being useful to everyone else. No mirrors, no music you have to shout over, no one watching to see whether you can touch your toes.",
     primaryCta: { label: "See the schedule", href: "/classes" },
     secondaryCta: { label: "New here? Start here", href: "/classes#first-time" },
-    imageAlt: "A dim studio with candles along one wall and a single mat unrolled",
+    image: undefined as SanityImageWithAlt | undefined,
+    imageUrl: demoPhoto("photo-1655362693203-e1f03d5fe7ef", 2000, 1400),
+    imageAlt: "A woman resting forward over her knees on a dark wooden floor, lit from one side",
   },
 
   intro: {
@@ -49,6 +68,9 @@ export const defaultHomePage = {
   classTypes: [
     {
       name: "Restorative",
+      image: undefined as SanityImageWithAlt | undefined,
+      imageUrl: demoPhoto("photo-1552206735-e18f41fe76de", 900, 675),
+      imageAlt: "An eye pillow resting over closed eyes",
       duration: "75 minutes",
       intensity: 1,
       summary:
@@ -57,6 +79,9 @@ export const defaultHomePage = {
     },
     {
       name: "Yin",
+      image: undefined as SanityImageWithAlt | undefined,
+      imageUrl: demoPhoto("photo-1540205597869-814e97c94f25", 900, 675),
+      imageAlt: "A long forward fold held over a folded blanket",
       duration: "75 minutes",
       intensity: 2,
       summary:
@@ -65,6 +90,9 @@ export const defaultHomePage = {
     },
     {
       name: "Candlelit slow flow",
+      image: undefined as SanityImageWithAlt | undefined,
+      imageUrl: demoPhoto("photo-1706922122814-12402375d89a", 900, 675),
+      imageAlt: "A row of candles burning in a dark room",
       duration: "60 minutes",
       intensity: 3,
       summary:
@@ -150,6 +178,9 @@ export const defaultHomePage = {
     "If money is the reason you're not coming, say so and we'll work it out. That offer is real and nobody has ever abused it.",
 
   closing: {
+    image: undefined as SanityImageWithAlt | undefined,
+    imageUrl: demoPhoto("photo-1744918712163-64993d95d6be", 2000, 1200),
+    imageAlt: "Candles burning low in a dim room",
     heading: "The hardest part is the first time",
     body: "You don't need to be ready. You need to pick a night and put it in your calendar.",
     cta: { label: "See the schedule", href: "/classes" },
@@ -172,7 +203,9 @@ export const defaultAboutPage = {
   eyebrow: "About",
   heading: "Nora Vance",
   credential: "RYT-500 · Teaching since 2018",
-  portraitAlt: "Nora sitting cross-legged on a bolster in a dim studio",
+  image: undefined as SanityImageWithAlt | undefined,
+  imageUrl: demoPhoto("photo-1737638699849-f4eeb326e943", 1200, 1500),
+  imageAlt: "Nora sitting on the floor of a warm, dimly lit room",
   body: [
     "I came to yoga late and badly, in my thirties, after a decade of treating my body as something that carried my head to meetings. My first class was humiliating. I spent most of it looking sideways to check what everyone else was doing, and I did not go back for a year.",
     "When I did go back, it was to a small evening restorative class in a room with the lights off, taught by someone who never once mentioned alignment. That hour did more for me than the previous decade of trying to be good at exercise. It is the class I now teach.",

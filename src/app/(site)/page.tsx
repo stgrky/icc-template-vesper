@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { Reveal } from "@/components/motion/Reveal";
 import { VesperHero } from "@/components/site/VesperHero";
+import { VesperImage } from "@/components/site/VesperImage";
 import { WeeklySchedule } from "@/components/site/WeeklySchedule";
 import { defaultHomePage } from "@/lib/vesper-defaults";
 import { safeFetch } from "@/sanity/client";
@@ -65,8 +66,20 @@ export default async function HomePage() {
           <ul className="mt-14 grid gap-10 md:grid-cols-3 md:gap-8">
             {page.classTypes.map((c, i) => (
               <Reveal key={c.name} delay={0.07 * i} className="h-full">
-                <li className="flex h-full flex-col border-t border-[var(--color-accent)]/40 pt-6">
-                  <div className="flex items-baseline justify-between gap-4">
+                <li className="flex h-full flex-col">
+                  {c.image || c.imageUrl ? (
+                    <div className="relative mb-6 aspect-[4/3] overflow-hidden rounded-sm">
+                      <VesperImage
+                        image={c.image}
+                        url={c.imageUrl}
+                        alt={c.name}
+                        treatment="card"
+                        width={800}
+                        height={600}
+                      />
+                    </div>
+                  ) : null}
+                  <div className="flex items-baseline justify-between gap-4 border-t border-[var(--color-accent)]/40 pt-6">
                     <h3 className="font-serif text-2xl font-light text-[var(--color-foreground)]">
                       {c.name}
                     </h3>
@@ -235,6 +248,12 @@ export default async function HomePage() {
 
       {/* Close. */}
       <section className="relative isolate overflow-hidden border-t border-[var(--color-subtle)] py-28 md:py-36">
+        <VesperImage
+          image={page.closing.image}
+          url={page.closing.imageUrl}
+          treatment="band"
+          className="-z-20"
+        />
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
           <div className="vesper-flame absolute left-1/2 top-1/2 h-[80vmin] w-[80vmin] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-60" />
         </div>

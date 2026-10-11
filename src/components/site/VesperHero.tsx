@@ -1,8 +1,13 @@
 import Link from "next/link";
 
+import { VesperImage } from "@/components/site/VesperImage";
+import type { SanityImageWithAlt } from "@/sanity/types";
+
 type Cta = { label: string; href: string };
 
 type Props = {
+  image?: SanityImageWithAlt;
+  imageUrl?: string;
   eyebrow?: string;
   heading: string;
   body?: string;
@@ -24,17 +29,37 @@ type Props = {
  * is the entire point — a wellness site that visibly animates reads as a tech
  * product. It is disabled outright under `prefers-reduced-motion`.
  *
- * Deliberately no image behind this. Every other template in the rolodex
- * opens on a photograph, and the one thing a new teacher never has is good
- * photography of an empty dim room.
+ * The photograph is optional and the flame is not. With no image the hero is
+ * still a lit room rather than an empty box, which matters because the one
+ * thing a new teacher rarely has is good photography of a dim studio. When
+ * she does have one, it goes behind the light rather than instead of it.
  */
-export function VesperHero({ eyebrow, heading, body, primaryCta, secondaryCta }: Props) {
+export function VesperHero({
+  image,
+  imageUrl,
+  eyebrow,
+  heading,
+  body,
+  primaryCta,
+  secondaryCta,
+}: Props) {
   return (
     <section className="relative isolate flex min-h-[92svh] items-end overflow-hidden">
+      {/* Photograph first, then the light on top of it. The flame reads as the
+          source lighting the room rather than as a graphic laid over a photo,
+          which is the whole trick. */}
+      <VesperImage
+        image={image}
+        url={imageUrl}
+        treatment="band"
+        priority
+        className="-z-20"
+      />
+
       {/* The light itself. aria-hidden: it is atmosphere, not content. */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <div className="vesper-flame absolute left-1/2 top-[38%] h-[120vmin] w-[120vmin] -translate-x-1/2 -translate-y-1/2 rounded-full" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-background)]/70 via-transparent to-[var(--color-background)]" />
+        <div className="vesper-flame absolute left-1/2 top-[38%] h-[120vmin] w-[120vmin] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-background)]/40 via-transparent to-[var(--color-background)]" />
       </div>
 
       <div className="mx-auto w-full max-w-6xl px-6 pb-20 pt-40 md:pb-28">

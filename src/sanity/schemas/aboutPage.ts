@@ -14,8 +14,10 @@ export const aboutPage = defineType({
       type: "string",
     }),
     defineField({
-      name: "portrait",
-      title: "A photo of you (optional)",
+      name: "image",
+      title: "A photo of you, or of the room (optional)",
+      description:
+        "Shown wide and short under your name. A photo of the space with you in it works better than a headshot — it keeps the subject the practice rather than the profile.",
       type: "image",
       options: { hotspot: true },
       fields: [

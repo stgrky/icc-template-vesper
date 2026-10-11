@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { Reveal } from "@/components/motion/Reveal";
+import { VesperImage } from "@/components/site/VesperImage";
 import { defaultAboutPage } from "@/lib/vesper-defaults";
 import { safeFetch } from "@/sanity/client";
 import { aboutPageQuery } from "@/sanity/queries";
@@ -47,6 +48,26 @@ export default async function AboutPage() {
           </Reveal>
         </div>
       </section>
+
+      {page.image || page.imageUrl ? (
+        <section className="px-6 pb-16">
+          {/* Wide and short rather than a portrait crop. A head-and-shoulders
+              shot would make this a profile page; a room with a person in it
+              keeps the subject the practice. */}
+          <div className="mx-auto w-full max-w-5xl">
+            <div className="relative aspect-[16/7] overflow-hidden rounded-sm">
+              <VesperImage
+                image={page.image}
+                url={page.imageUrl}
+                alt={page.imageAlt}
+                treatment="card"
+                width={1600}
+                height={700}
+              />
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       <section className="px-6 pb-20 md:pb-28">
         <div className="mx-auto w-full max-w-3xl">

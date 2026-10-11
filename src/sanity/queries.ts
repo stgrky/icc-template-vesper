@@ -123,17 +123,17 @@ export const postBySlugQuery = groq`*[_type == "post" && slug.current == $slug][
  * consumer index into it.
  */
 export const homePageQuery = `*[_type == "homePage"][0]{
-  hero{ eyebrow, heading, body, primaryCta{ label, href }, secondaryCta{ label, href } },
+  hero{ eyebrow, heading, body, image, primaryCta{ label, href }, secondaryCta{ label, href } },
   intro{ heading, body },
   classTypesHeading, classTypesIntro,
-  classTypes[]{ name, duration, intensity, summary, forWhom },
+  classTypes[]{ name, duration, intensity, image, summary, forWhom },
   scheduleHeading, scheduleIntro, scheduleNote,
   schedule[]{ day, time, className, duration, spaces },
   firstTimeHeading, firstTimeIntro, firstTime[]{ q, a },
   teacherHeading, teacherBody, teacherCta{ label, href },
   testimonial{ quote, attribution },
   pricingHeading, pricingIntro, pricing[]{ label, price, note }, pricingNote,
-  closing{ heading, body, cta{ label, href } }
+  closing{ heading, body, image, cta{ label, href } }
 }`;
 
 export const classesPageQuery = `*[_type == "classesPage"][0]{
@@ -141,7 +141,7 @@ export const classesPageQuery = `*[_type == "classesPage"][0]{
 }`;
 
 export const aboutPageQuery = `*[_type == "aboutPage"][0]{
-  eyebrow, heading, credential, portrait, body,
+  eyebrow, heading, credential, image, body,
   trainingHeading, training[]{ label, detail },
   closing{ heading, body, cta{ label, href } }
 }`;

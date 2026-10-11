@@ -44,6 +44,22 @@ export const homePage = defineType({
           rows: 4,
         }),
         defineField({
+          name: "image",
+          title: "Background photograph",
+          description:
+            "Fills the whole first screen behind your words. A dim, warm photo works best — the page darkens it and lays text over the top, so anything bright or busy will fight the writing. Portrait or landscape both work.",
+          type: "image",
+          options: { hotspot: true },
+          fields: [
+            defineField({
+              name: "alt",
+              title: "Describe the photo",
+              description: "For anyone using a screen reader, and shown if the image fails to load.",
+              type: "string",
+            }),
+          ],
+        }),
+        defineField({
           name: "primaryCta",
           title: "Main button",
           type: "object",
@@ -103,6 +119,14 @@ export const homePage = defineType({
               type: "number",
               options: { list: [1, 2, 3], layout: "radio", direction: "horizontal" },
               initialValue: 1,
+            }),
+            defineField({
+              name: "image",
+              title: "Photo for this class (optional)",
+              description: "Shown above the class name. Leave empty and the card is type only, which also looks right.",
+              type: "image",
+              options: { hotspot: true },
+              fields: [defineField({ name: "alt", title: "Describe the photo", type: "string" })],
             }),
             defineField({ name: "summary", title: "What happens in it", type: "text", rows: 5 }),
             defineField({
@@ -237,6 +261,14 @@ export const homePage = defineType({
       fields: [
         defineField({ name: "heading", title: "Heading", type: "string" }),
         defineField({ name: "body", title: "A line underneath", type: "text", rows: 3 }),
+        defineField({
+          name: "image",
+          title: "Background photograph (optional)",
+          description: "Sits behind the last block on the page, darkened.",
+          type: "image",
+          options: { hotspot: true },
+          fields: [defineField({ name: "alt", title: "Describe the photo", type: "string" })],
+        }),
         defineField({
           name: "cta",
           title: "Button",

@@ -286,7 +286,7 @@ export interface VesperAbout {
   eyebrow?: string;
   heading?: string;
   credential?: string;
-  portrait?: SanityImageWithAlt;
+  image?: SanityImageWithAlt;
   body?: string[];
   trainingHeading?: string;
   training?: { label?: string; detail?: string }[];
