@@ -16,5 +16,7 @@ export default defineCliConfig({
   // refuses and prints a NEW appId for this Studio app — paste that one here.
   // Pasting the old one back is the mistake the gate exists to catch.
   studioHost: "icc-vesper-demo",
-  deployment: { autoUpdates: true },
+  // Issued by the CLI on Vesper's first deploy, 2026-10-10. This is the
+  // NEW id, not the one inherited from Grove.
+  deployment: { autoUpdates: true, appId: "rf65iad8s2rzgb4xf03idktf" },
 });
